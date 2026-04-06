@@ -20,6 +20,9 @@
 </p>
 </div>
 
+# Information
+When an scp dies, all players receive a broadcast with information about the scp's number and the player's nickname who killed the scp.
+
 # Installation
 
 ``ScpKilledBy.dll`` move to ``~\LabAPI\plugins\global``
