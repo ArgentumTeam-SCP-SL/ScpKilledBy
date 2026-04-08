@@ -1,7 +1,6 @@
 ﻿using System;
 using LabApi.Events.Handlers;
 using LabApi.Features;
-using LabApi.Features.Console;
 using LabApi.Features.Wrappers;
 using LabApi.Loader.Features.Plugins;
 using PlayerRoles;
@@ -22,39 +21,35 @@ namespace ScpKilledBy
 
         private void OnDying(LabApi.Events.Arguments.PlayerEvents.PlayerDyingEventArgs ev)
         {
-            if (ev.Player.Team != Team.SCPs)
+            if (ev.Player.Team != Team.SCPs || ev.Player.Role == RoleTypeId.Scp0492)
                 return;
             
-            if (ev.Player.Role == RoleTypeId.Scp0492)
-                return;
-            
-            string Text;
-            ushort Time;
+            string text;
+            ushort time;
             
             if (ev.Attacker == null || ev.Attacker == ev.Player)
             {
-                Text = Config.selfDestructed
-                    .Replace("{Scp}", ev.Player.Role.ToString());
-                Time = Config.selfDestructedTime;
+                text = Config.SelfDestructed
+                    .Replace("%Scp%", ev.Player.Role.ToString());
+                time = Config.SelfDestructedTime;
             }
             else
             {
-                Text = Config.DestructedByPlayer
-                    .Replace("{Scp}", ev.Player.Role.ToString())
-                    .Replace("{Attacker}", ev.Attacker.Nickname);
-                Time = Config.DestructedByPlayerTime;
+                text = Config.DestructedByPlayer
+                    .Replace("%Scp%", ev.Player.Role.ToString())
+                    .Replace("%Attacker%", ev.Attacker.Nickname);
+                time = Config.DestructedByPlayerTime;
             }
             foreach (var p in Player.List)
             {
-                Logger.Info($"SendBroadcast to {p.Nickname}");
-                p.SendBroadcast(Text, Time);
+                p.SendBroadcast(text, time);
             }
         }
 
         public override string Name { get; } = "ScpKilledBy";
         public override string Description { get; } = "ScpKilledBy";
         public override string Author { get; } = "AgTeam";
-        public override Version Version { get; } = new Version(1, 0, 0);
+        public override Version Version { get; } = new Version(1, 0, 1);
         public override Version RequiredApiVersion { get; } = LabApiProperties.CurrentVersion;
     }
 }

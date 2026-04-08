@@ -2,13 +2,13 @@
 {
     public class Config
     {
-        public string selfDestructed { get; set; } = 
-            "<size=50><color=red>💀 <b>{Scp}</color></size> <size=40>был самоликвидирован</b></size>";
+        public string SelfDestructed { get; set; } = 
+            "<size=50><color=red>💀 <b>%Scp%</color></size> <size=40>It was self-destructed</b></size>";
 
-        public ushort selfDestructedTime { get; set; } = 5;
+        public ushort SelfDestructedTime { get; set; } = 5;
         
         public string DestructedByPlayer { get; set; } = 
-            "<size=50><color=red>💀 <b>{Scp}</color></size> <size=40>был ликвидирован игроком <color=orange>{Attacker}</color></b></size>";
+            "<size=50><color=red>💀 <b>%Scp%</color></size> <size=40>was eliminated by a player <color=orange>%Attacker%</color></b></size>";
         public ushort DestructedByPlayerTime { get; set; } = 5;
     }
 }
