@@ -3,7 +3,7 @@
     public class Config
     {
         public string SelfDestructed { get; set; } = 
-            "<size=50><color=red>💀 <b>%Scp%</color></size> <size=40>It was self-destructed</b></size>";
+            "<size=50><color=red>💀 <b>%Scp%</color></size> <size=40>it was self-destructed</b></size>";
 
         public ushort SelfDestructedTime { get; set; } = 5;
         
